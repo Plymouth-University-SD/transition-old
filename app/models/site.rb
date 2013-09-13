@@ -40,7 +40,7 @@ class Site < ActiveRecord::Base
     hosts.order(:id).first
   end
 
-  def to_param
-    site
-  end
+  # def to_param
+  #   site
+  # end
 end

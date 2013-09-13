@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def find_site
-    @site = Site.find_by_site!(params[:site_id])
+    @site = Site.find(params[:site_id])
   end
 
   private
