@@ -18,9 +18,9 @@
       <dt>Progress:</dt>
       <dd>
         <table>
-        <% %w{new unfinished finished}.each do |state| %>
+        <% ['new', 'unfinished', 'finished'].each do |state| %>
           <tr>
-            <td><%= state %></td>
+            <td><%= UrlsController::URL_FILTER_QUERY_TO_STATE.index(state) %></td>
             <td><%= @counts[state] || 0 %></td>
             <td><%= "%.1f" % ((@counts[state] || 0) * 100.0 / @total_urls.to_f) %>%</td>
           </tr>

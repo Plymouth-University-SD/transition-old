@@ -1,8 +1,8 @@
 development:
   adapter: mysql2
   database: transition_development_old
-  username: transition
-  password: transition
+  username: root
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -10,8 +10,8 @@ development:
 test: &test
   adapter: mysql2
   database: transition_test_old<%= ENV['TEST_ENV_NUMBER'] %>
-  username: transition
-  password: transition
+  username: root
+  password: 
 
 production:
   adapter: mysql2

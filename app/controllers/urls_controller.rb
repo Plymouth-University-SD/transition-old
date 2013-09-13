@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
 
   include UrlsHelper
-  URL_FILTER_QUERY_TO_STATE = {'unseen' => 'new', 'review' => 'unfinished', 'final' => 'finished'}
+  URL_FILTER_QUERY_TO_STATE = {'not started' => 'new', 'submitted' => 'submitted', 'sent back' => 'returned', 'approved' => 'approved', 'review' => 'unfinished', 'migrated' => 'finished', 'not required' => 'n-a'}
 
   before_filter :find_site
 
