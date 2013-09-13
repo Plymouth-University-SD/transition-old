@@ -46,5 +46,5 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '2.13.2'
-  # gem 'debugger'
+  gem 'debugger'
 end

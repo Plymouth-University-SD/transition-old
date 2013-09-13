@@ -23,7 +23,8 @@ module UrlsHelper
   end
 
   def options_for_url_state_select(state)
-    options = [['Unseen', 'unseen'], ['Saved for review', 'review'], ['Saved as final', 'final']]
+    
+    options = UrlsController::URL_FILTER_QUERY_TO_STATE.to_a
     options_for_select(options, state)
   end
 

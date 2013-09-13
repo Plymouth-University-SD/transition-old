@@ -12,7 +12,7 @@ feature 'Filter urls for a site' do
     @url2 = create :url, url: 'http://www.naturalengland.org.uk/about_us/default.aspx', site: @site1, 
       content_type: @content_type2, for_scraping: false
     @url3 = create :url, url: 'http://www.naturalengland.org.uk/contact_us', site: @site1, 
-      content_type: @content_type1, state: 'unfinished', for_scraping: true
+      content_type: @content_type1, state: 'submitted', for_scraping: true
     @url4 = create :url, url: 'http://www.dfid.org.uk/please_contact_us', site: @site2
     @url5 = create :url, url: 'http://www.naturalengland.org.uk/help', site: @site1, 
       content_type: @content_type1, for_scraping: true
@@ -21,19 +21,23 @@ feature 'Filter urls for a site' do
   end
 
   scenario 'View all urls for a site and filter them by content type and state', js: true do
+    debugger
     visit site_urls_path(@site1)
-
+debugger
     page.should have_url_list_in_this_order ['/site', '/about_us/default.aspx', '/contact_us', '/help']
-   
+   debugger
     select 'Bling', from: 'filter_by_content_type'
-
+debugger
     page.should have_url_list_in_this_order ['/site', '/contact_us', '/help']
-
+debugger
     # check that filter is preserved on links and form submission
     page.should have_link(@url3.url, href: site_url_path(@site1, @url3, content_type: @content_type1.id))
     click_link @url3.url
     page.should_not have_link(@url3.url)
+    debugger
+    save_and_open_page
     page.should have_url_list_in_this_order ['/site', '/contact_us', '/help']
+    
 
     click_button 'Save for review later'
 
@@ -42,11 +46,12 @@ feature 'Filter urls for a site' do
     page.should have_url_list_in_this_order ['/site', '/contact_us', '/help']
 
     # filter by both content type and state
-    select 'Unseen', from: 'filter_by_state'
+    select 'not started', from: 'filter_by_state'
+    
     page.should have_url_list_in_this_order ['/help']
-    select 'Saved for review', from: 'filter_by_state'
+    select 'submitted', from: 'filter_by_state'
     page.should have_url_list_in_this_order ['/contact_us']
-    select 'Saved as final', from: 'filter_by_state'
+    select 'migrated', from: 'filter_by_state'
     page.should have_url_list_in_this_order ['/site']
   end
 
