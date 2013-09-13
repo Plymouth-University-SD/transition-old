@@ -13,6 +13,7 @@ module Transition
           named_columns
 
           url('Url')
+          title('Title')
 
           after_row lambda { |row, url|
             logger.warn('ignoring empty row') and return if row.empty?
