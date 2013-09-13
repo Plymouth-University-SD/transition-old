@@ -4,7 +4,7 @@
       <% @urls.each do |url| %>
         <%= content_tag :tr, class: "#{url.state}#{@url == url ? ' selected' : nil}", 'data-url' => url.url do %>
           <td><%= check_box_tag "url_select[#{url.id}]", '1', (url == @url or params["url_select"].try(:[], url.id.to_s)), disabled: url == @url %></td>
-          <td class="url"><%= link_to_if url != @url, url.request_uri, site_url_path(@site, url, url_filter_hash), title: url.url %></td>
+          <td class="url"><%= link_to_if url != @url, url.request_uri, site_url_path(@site, url, url_filter_hash), title: url.url %> - (<%= url.title %>)</td>
         <% end %>
       <% end %>
     </tbody>

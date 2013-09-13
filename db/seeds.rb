@@ -22,7 +22,8 @@ end
 # seeding requires a local checkout of the redirector project in the data directory
 # git clone git@github.com:alphagov/redirector.git
 
-dirs = Dir.glob("data/redirector-new/data/sites/*.yml")
+#dirs = Dir.glob("data/redirector-new/data/sites/*.yml")
+dirs = Dir.glob("data/redirector-new/data/sites/ukef.yml")
 
 dirs.each do |file|
   s = YAML.load_file file
